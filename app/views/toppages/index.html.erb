@@ -1,19 +1,81 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="img pt-0">
+  
+  <table align="center" class="mb-4 tabl" height="10">
+    <tr>
+      <td><%= link_to "◁",root_path(month:@month.prev_month),class:'btn btn-outline-secondary' %></td>
+      <td></td>
+      <td></td>
+      <td style="width:360px;" class="border text-center" ><%= @month.strftime("%Y年%-m月") %></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "▷",root_path(month:@month.next_month),class:'btn btn-outline-secondary' %></td>
+    </tr>
+  </table>
+  
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+      <table class="table table-light">
+        <tr>
+          <th>収支</th>
+          <th>
+            <div class="text-end"><%= @kinds.to_s(:delimited) %>ゼニー</div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2">
+      <table class="table table-danger">
+        <tr>
+          <th>支出</th>
+          <th>
+            <div class="text-end"><%= @costs.sum(:cost).to_s(:delimited) %>ゼニー</div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <table class="table table-success">
+        <tr>
+          <th>収入</th>
+          <th>
+            <div class="text-end"><%= @incomes.sum(:cost).to_s(:delimited) %>ゼニー</div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-8 offset-2 mt-5 mb-4">
+      <h4 class="border-bottom text-center">カテゴリー別</h4>
+    </div>
+    <div class="mb-4">
+      <%= pie_chart @variable_ratio, donut: true, suffix: "%" %>
+    </div>
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+      <% @categories_id.each do |category| %>
+      <table class="w-100">
+        <tr>
+          <td class="border-bottom"><%=link_to category.first[1], category_path(category.first[0]),class: 'userList text-dark' %></td>
+          <td class="border-bottom"><div class="text-end"><%=link_to category.last, category_path(category.first[0]),class: 'userList text-danger' %><span class="align-items-center">ゼニー</span></div></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  </div>
 <% else %>
-<div class="p-sm-3 my-4 ">
-  <div class="text-center text-white">
-    <span class="font-large bg-warning ">Kakeibo</span>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 offset-3">
-    <div class="mt-3">
-      <%= link_to 'ログイン',login_path,class: 'btn btn-lg btn-outline-secondary w-100' %>
-    </div>
-    <div class="mt-4">
-      <%= link_to'会員登録',signup_path,class: 'btn btn-lg btn-outline-secondary w-100' %>
+  <div class="p-sm-3 my-4 ">
+    <div class="text-center text-white">
+      <span class="font-large bg-warning ">Kakeibo</span>
     </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col-sm-6 offset-3">
+      <div class="mt-3">
+        <%= link_to 'ログイン',login_path,class: 'btn btn-lg btn-outline-secondary w-100' %>
+      </div>
+      <div class="mt-4">
+        <%= link_to'会員登録',signup_path,class: 'btn btn-lg btn-outline-secondary w-100' %>
+      </div>
+    </div>
+  </div>
 <% end %>

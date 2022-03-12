@@ -9,9 +9,9 @@
         <% if logged_in? %>
          <div class="btn-group">
            <ul class="navbar-nav">
-             <li <li class="ms-3"><%= link_to '入力', '#', class: 'nav-link' %></li>
-             <li <li class="ms-3"><%= link_to '収支一覧', '#', class: 'nav-link' %></li>
-             <li <li class="ms-3"><%= link_to '月別支出', '#', class: 'nav-link' %></li>
+             <li <li class="ms-3"><%= link_to '入力', new_cost_path, class: 'nav-link' %></li>
+             <li <li class="ms-3"><%= link_to '収支一覧', costs_path(@user), class: 'nav-link' %></li>
+             <li <li class="ms-3"><%= link_to '月別支出', costs_month_path, class: 'nav-link' %></li>
            </ul>
            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
              <%= current_user.name %>

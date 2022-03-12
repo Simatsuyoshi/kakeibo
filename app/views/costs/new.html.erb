@@ -1,0 +1,43 @@
+<div class='text-center pb-4'>
+  <h1>入力</h1>
+</div>
+<div class="row">
+  <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+    <%= form_with(model: @cost) do |f| %>
+      <div class="mb-3">
+        <%= f.radio_button :kind_id, '1',id: "radio",onchange: "myfunc()" %>
+        <%= f.label :kind_id, "支出", value: 1, style: "display: inline-block;" %>
+        <%= f.radio_button :kind_id, '2',id: "check",onchange: "myfunc()" %>
+        <%= f.label :kind_id, "収入", value: 2, style: "display: inline-block;" %>   
+      </div>
+      <div class="mb-3"><%= f.date_field :date%></div>
+      <div  class="mb-3 "id="ho1">
+        <%= f.select :category_id, [["食費", "1"], ["日用品", "2"], ["美容", "3"], ["交際費", "4"],["光熱費","5"],["住居費","6"],["趣味","7"],["衣服","8"],["交通費","9"],["その他","10"]],{include_blank: "カテゴリー"},{ class: "w-50"}%>
+      </div>
+      <div class="mb-3">
+        <%= f.label :content, '項目' %>
+        <%= f.text_field :content, class: 'form-control ' %>
+      </div>
+      
+      <div class="mb-5">
+        <%= f.label :cost, '支出' %>
+        <div class="col-lg-12 d-flex flex-row">
+          <%= f.text_field :cost , class: 'form-control',:style=>"text-align:right" %><div class="d-flex align-items-center">円</div>
+        </div>
+      </div>
+      <%= f.submit '追加', class: 'btn btn-primary w-100' %>
+    <% end %>
+  </div>
+</div> 
+<script>
+  document.getElementById("ho1")
+  function myfunc() {
+  var check1 = document.getElementById("radio").checked;
+  var check2 = document.getElementById("check").checked;
+  if(check1 == true){
+     ho1.style.display ="block";
+  }else if(check2 == true) {
+    ho1.style.display ="none";
+     }
+  }
+</script>

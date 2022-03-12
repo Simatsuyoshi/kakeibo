@@ -1,0 +1,31 @@
+<div class='text-center pb-4'>
+  <div class="row">
+    <h2><%= @category_name.name %></h2>
+  </div>
+  <table align="center" class="mb-4 tabl" height="10">
+    <tr>
+      <td><%= link_to "◁",category_path(month:@month.prev_month),class:'btn btn-outline-secondary' %></td>
+      <td></td>
+      <td></td>
+      <td style="width:360px;" class="border text-center" ><%= @month.strftime("%Y年%-m月") %></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "▷",category_path(month:@month.next_month),class:'btn btn-outline-secondary' %></td>
+    </tr>
+  </table>
+</div>
+
+<div class="row">
+  <div class="offset=xl-3 col=xl-6 offset-lg-2 offset-md-1 col-lg-8 col-md-10">
+    <% @category.each do |category| %>
+      <table height="10" align="center">
+        <tr>
+          <th width="50" class="text-end border-bottom"><%= category.date.strftime("%-d日") %></th>
+          <td width="250" class="text-center border-bottom"><%= category.content %></td>
+          <td width="150" class="text-end border-bottom text-danger"><%= category.cost.to_s(:delimited) %>円</td>
+          <td width="100" class="text-center"><%= link_to '編集', edit_cost_path(id: category.id),class: 'btn btn-secondary' %></td>
+        </tr>
+      </table> 
+    <% end %>
+  </div>
+</div>

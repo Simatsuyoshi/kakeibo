@@ -1,0 +1,33 @@
+<div class='text-center pb-4'>
+  <h1>収支一覧</h1>
+</div>
+  <table align="center" class="mb-4 " height="10">
+    <tr>
+      <td><%= link_to "◁",costs_path(month:@month.prev_month),class:'btn btn-outline-secondary' %></td>
+      <td></td>
+      <td></td>
+      <td style="width:360px;" class="border text-center" ><%= @month.strftime("%Y年%-m月") %></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "▷",costs_path(month:@month.next_month),class:'btn btn-outline-secondary' %></td>
+    </tr>
+  </table>
+<div class="row">
+  <div class="offset=xl-3 col=xl-6 offset-lg-2 offset-md-1 col-lg-8 col-md-10">
+    <% @variable_ratio.each do |category| %>
+      <table height="10" align="center">
+        <tr>
+          <th width="50" class="text-end border-bottom"><%= category.date.strftime("%-d日") %></th>
+          <td width="150" class="text-center border-bottom"><%= category.name %></td>
+          <td width="250" class="text-center border-bottom"><%= category.content %></td>
+          <% if category.kind_id == 1 %>
+           <td width="150" class="text-end border-bottom text-danger"><%= category.cost.to_s(:delimited) %>円</td>
+          <% else %>
+           <td width="150" class="text-end border-bottom text-success"><%= category.cost.to_s(:delimited) %>円</td>
+          <% end %>
+          <td width="100" class="text-end "><%= link_to '編集', edit_cost_path(id: category.id),class: 'btn btn-secondary' %></td>
+        </tr>
+      </table> 
+    <% end %>
+  </div>
+</div>
