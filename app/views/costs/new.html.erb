@@ -4,6 +4,15 @@
 <div class="row">
   <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
     <%= form_with(model: @cost) do |f| %>
+     <% if @cost.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @cost.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
       <div class="mb-3">
         <%= f.radio_button :kind_id, '1',id: "radio",onchange: "myfunc()" %>
         <%= f.label :kind_id, "支出", value: 1, style: "display: inline-block;" %>
