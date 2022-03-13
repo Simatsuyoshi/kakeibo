@@ -56,7 +56,7 @@ class CostsController < ApplicationController
   
   def month
     @orders = current_user.costs
-    @month_group = @orders.group("YEAR(date)").group("MONTH(date)").order("date DESC")
+    @month_group = @orders.group("YEAR(created_at)").group("MONTH(date)").order("date DESC")
     @month_costs = @month_group.where(kind_id:'1').sum(:cost)
     
   end
