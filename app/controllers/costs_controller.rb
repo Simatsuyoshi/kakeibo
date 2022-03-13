@@ -58,7 +58,7 @@ class CostsController < ApplicationController
     @orders = current_user.costs
     @month_group = @orders.group("YEAR(date)").group("MONTH(date)").order("date DESC")
     @month_costs = @month_group.where(kind_id:'1').sum(:cost)
-    @month_incomes = @month_group.where(kind_id:'2').sum(:cost)
+    
   end
  
   
