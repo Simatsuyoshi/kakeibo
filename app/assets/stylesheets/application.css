@@ -25,14 +25,7 @@ p {
   text-decoration: none;
 }
 
-.img{
-  position: relative;
-  background-image: url(S20.jpg);
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 150vh;
-}
+
 
 .op{
   opacity: 0.5;
@@ -44,7 +37,7 @@ p {
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 105vh;
 }
 .img2{
   position: relative;
