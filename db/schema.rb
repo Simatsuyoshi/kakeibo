@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 2022_03_04_135413) do
   create_table "costs", charset: "utf8mb4", force: :cascade do |t|
     t.date "date"
     t.string "content"
-    t.bigint "cost"
+    t.bigint "cost", null: false
     t.bigint "user_id", null: false
     t.bigint "category_id"
-    t.bigint "kind_id", null: false
+    t.bigint "kind_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_costs_on_category_id"
